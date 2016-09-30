@@ -50,14 +50,14 @@ X = [ones(m, 1) X];
 %
 initial_theta = zeros(n+1,1);
 J_temp = 0;
-grad_temp= zeros(size(intial_theta));
+grad_temp= zeros(size(initial_theta));
 options = optimset('GradObj','on','MaxIter',50);
 for i=1:num_labels-1
-  [theta,cost] = fmincg(@(t)(lrCostFunction(t,X,(y==i),lambda)),intial_theat,options);
-  all_theta(i) = theta;
+  [theta,cost] = fmincg(@(t)(lrCostFunction(t,X,(y==i),lambda)),initial_theta,options);
+  all_theta(i,:) = theta';
 end
- [theta,cost]=fmincg(@(t)(lrCostFunction(t,X,(y==0),lambda)),intial_theta,options);
- all_theta(10) = theta;
+ [theta,cost]=fmincg(@(t)(lrCostFunction(t,X,(y==0),lambda)),initial_theta,options);
+ all_theta(10,:) = theta';
 
 
 
